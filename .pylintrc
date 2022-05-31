@@ -1,0 +1,6 @@
+[MESSAGES CONTROL]
+disable=
+    R1732,
+    W0612
+output-format = colorized
+max-locals=18
