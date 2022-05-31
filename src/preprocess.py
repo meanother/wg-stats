@@ -36,8 +36,11 @@ def to_datetime(timestamp: int) -> str:
 
 def get_ip(string: str):
     """parse raw ip address to x.x.x.x"""
-    pat = re.compile(r"\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}")
-    return pat.search(string).group()
+    try:
+        pat = re.compile(r"\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}")
+        return pat.search(string).group()
+    except AttributeError:
+        return None
 
 
 def convert_list_to_dict(item: list) -> dict:

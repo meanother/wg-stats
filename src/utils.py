@@ -33,7 +33,10 @@ def _init_db():
 
 def check_db_exists():
     """Проверяет, инициализирована ли БД, если нет — инициализирует"""
-    cursor.execute("SELECT count(*) FROM sqlite_master WHERE name in ('stats', 'wg0_users', 'user_map', 'v_stats')")
+    cursor.execute(
+        "SELECT count(*) FROM sqlite_master "
+        "WHERE name in ('stats', 'wg0_users', 'user_map', 'v_stats')"
+    )
     table_exists = cursor.fetchall()[0][0]
     if table_exists >= 4:
         return
