@@ -24,7 +24,7 @@ cursor = conn.cursor()
 
 def _init_db():
     """Инициализирует БД"""
-    init_path = pathlib.Path(__file__).resolve().parent.joinpath("sql/stats.sql")
+    init_path = pathlib.Path(__file__).resolve().parent.parent.joinpath("sql/stats.sql")
     with open(init_path, "r", encoding='utf-8') as file:
         init_src = file.read()
     cursor.executescript(init_src)
