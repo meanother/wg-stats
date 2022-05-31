@@ -16,7 +16,7 @@ create table IF NOT EXISTS stats(
 create table IF NOT EXISTS wg0_users(
     id integer primary key AUTOINCREMENT,
     peer_key text null,
-    peer_id text null,
+    peer_ip text null,
     event_ts timestamp not null
 );
 
