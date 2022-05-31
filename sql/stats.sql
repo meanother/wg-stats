@@ -50,4 +50,5 @@ from
         on u.key = s.peers
         and s.row_n = 1
 where
-    u.row_n = 1;
+    u.row_n = 1
+order by transfer_in_gb desc;
