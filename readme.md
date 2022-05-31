@@ -24,3 +24,20 @@ python main.py
 ```sql
 select * from v_stats;
 ```
+
+## Check stats hotkey
+```shell
+vim $HOME/check.sh
+
+$HOME/code/wg-stats/env/bin/python $HOME/code/wg-stats/main.py > /dev/null ;\
+$HOME/sqlite3 -box $HOME/db/wg-stats.db -box "select * from v_stats;" ".q"
+chmod +x check.sh
+
+vim .zshrc
+alias pp="$HOME/check.sh"
+
+source .zshrc
+
+# RUN
+pp
+```
