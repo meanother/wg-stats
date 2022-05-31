@@ -94,4 +94,4 @@ def get_user_public_id(username: str) -> dict:
     """get file data wor username"""
     with open(f"/etc/wireguard/{username}", "r", encoding="utf-8") as file:
         key = file.read().strip()
-    return {"username": username, "key": key, "event_ts": get_dt()}
+    return {"username": username.replace("_publickey", ""), "key": key, "event_ts": get_dt()}
