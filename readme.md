@@ -41,3 +41,5 @@ source .zshrc
 # RUN
 pp
 ```
+
+![img](pics/ex.jpg)
