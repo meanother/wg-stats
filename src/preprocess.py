@@ -93,8 +93,8 @@ def get_users(path: str) -> list:
     return result_list
 
 
-def get_user_public_id(username: str) -> dict:
+def get_user_public_id(path: str, username: str) -> dict:
     """get file data wor username"""
-    with open(f"/etc/wireguard/{username}", "r", encoding="utf-8") as file:
+    with open(f"{path}{username}", "r", encoding="utf-8") as file:
         key = file.read().strip()
     return {"username": username.replace("_publickey", ""), "key": key, "event_ts": get_dt()}

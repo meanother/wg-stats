@@ -5,10 +5,12 @@ from src.preprocess import (
     read_wg0,
     run_shell_cmd,
 )
-from src.utils import insert
+from src.utils import insert, create_parser
 
 
 def main():
+    args = create_parser()
+
     for stat in convert_output(run_shell_cmd("wg show all dump")):
         print(stat)
         insert(table="stats", column_values=stat)
@@ -17,9 +19,10 @@ def main():
         print(user_c)
         insert(table="wg0_users", column_values=user_c)
 
-    for user_a in get_users("/etc/wireguard/"):
+    users_path = args.users_path
+    for user_a in get_users(users_path):
         print(user_a)
-        insert(table="user_map", column_values=get_user_public_id(user_a))
+        insert(table="user_map", column_values=get_user_public_id(users_path, user_a))
 
 
 if __name__ == "__main__":

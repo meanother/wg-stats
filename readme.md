@@ -7,37 +7,30 @@ cd ~ ;\
 wget https://github.com/nalgeon/sqlite/releases/download/3.38.0/sqlite3-ubuntu ;\
 mv sqlite3-ubuntu sqlite3 ;\
 chmod +x sqlite3
-
-# run
-~/sqlite3 -box
 ```
 
 ## Run
 ```shell
-python main.py
+python main.py --users_path /path/to/clients/keys
 ```
 
 ## Check stats
 ```shell
 ~/sqlite3 $HOME/db/wg-stats.db -box
 ```
-```sql
-select * from v_stats;
-```
 
 ## Check stats hotkey
 ```shell
 vim $HOME/check.sh
 
-$HOME/code/wg-stats/env/bin/python $HOME/code/wg-stats/main.py > /dev/null ;\
+$HOME/code/wg-stats/env/bin/python $HOME/code/wg-stats/main.py --users_path /root/clients/ > /dev/null ;\
 $HOME/sqlite3 -box $HOME/db/wg-stats.db -box "select * from v_stats;" ".q"
-chmod +x check.sh
 
+chmod +x check.sh
 vim .zshrc
 alias pp="$HOME/check.sh"
 
 source .zshrc
-
 # RUN
 pp
 ```

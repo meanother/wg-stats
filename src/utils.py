@@ -1,4 +1,5 @@
 """Utils"""
+import argparse
 import os
 import pathlib
 import sqlite3
@@ -50,6 +51,14 @@ def insert(table: str, column_values: dict):
     placeholders = ", ".join("?" * len(column_values.keys()))
     cursor.executemany(f"INSERT INTO {table} " f"({columns}) " f"VALUES ({placeholders})", values)
     conn.commit()
+
+
+def create_parser():
+    """argument parser"""
+    parser = argparse.ArgumentParser(description="Options for run service")
+    parser.add_argument("-p", "--users_path", action="store", dest="users_path", type=str)
+    args = parser.parse_args()
+    return args
 
 
 check_db_exists()
