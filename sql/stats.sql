@@ -37,7 +37,12 @@ stats_ as
     select *, row_number() over(partition by peers order by event_ts desc) as row_n from stats
 )
 select
-    u.username
+    row_number() over(order by s.transfer_sender desc) as "№"
+    , case
+        when (julianday('now', 'localtime')-julianday(latest_handshakes))*86400.0/60 < 5 then "Online"
+        else "Offline"
+    end as status
+    , u.username
     , s.interface
     , s.ip_address
     , s.allowed_ips
